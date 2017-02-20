@@ -4,7 +4,7 @@ module Kps
     ATTRIBUTES = [
       :first_name, :identity_number, :first_name, :last_name, :mother_name,
       :father_name, :gender, :birthday, :place_of_birth, :marital_status,
-      :date_of_death, :nationality
+      :registered_city, :registered_town, :date_of_death, :nationality
     ].freeze
 
     attr_accessor(*ATTRIBUTES)

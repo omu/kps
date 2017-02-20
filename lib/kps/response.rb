@@ -54,6 +54,9 @@ module Kps
     def build_identity(data, uyruk = 'tc')
       base = data[:temel_bilgisi]
       status = data[:durum_bilgisi]
+      registered_informatin = { il: {}, ilce: {} }.merge(
+        data[:kayit_yeri_bilgisi] || {}
+      )
       if uyruk == 'tc'
         birthday = base[:dogum_tarih]
         id_number = data[:tc_kimlik_no]
@@ -80,6 +83,8 @@ module Kps
                            birthday[:gun].to_i),
         place_of_birth: base[:dogum_yer],
         marital_status: status[:medeni_hal][:aciklama],
+        registered_city: registered_informatin[:il][:aciklama],
+        registered_town: registered_informatin[:ilce][:aciklama],
         date_of_death: date_of_death,
         nationality: data[:uyruk][:aciklama]
       )

@@ -3,8 +3,6 @@ require 'kps/query'
 require 'kps/person'
 require 'kps/address'
 require 'kps/version'
-require 'byebug'
-require 'awesome_print'
 # Omu Kimlik Paylasim Sistemi
 module Kps
 
