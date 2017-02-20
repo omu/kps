@@ -6,7 +6,7 @@ Bu gem Ondokuz Mayıs Üniversitesi BİDB tarafından sunulan kimlik paylaşım 
 Uygulamanızın Gemfile dosyasına aşağıdaki satırı ekleyin;
 
 ```ruby
-gem 'kps', github: "uzem/kps"
+gem 'kps', git: 'git@github.com:uzem/kps.git'
 ```
 
 ve aşağıdaki kodu çalıştırın:
