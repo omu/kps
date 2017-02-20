@@ -46,8 +46,7 @@ Bu gem iki tür bilginin kimlik paylaşım sistemi üzerinden çekilmesini sağl
 Kps.query(kimlik_no)
 
 # Response
-
-#<Kps::Person:0x007f3657c1f270
+<Kps::Person:0x007f3657c1f270
  @birthday=#<Date: 1900-01-01 ((2448867j,0s,0n),+0s,2299161j)>,
  @date_of_death=nil,
  @father_name="Father Name",
@@ -82,7 +81,7 @@ person.foreign? # true or false
 Kps.query(kimlik_no, :adres_bilgisi)
 
 # Response
- #<Kps::Address:0x007f3656b658d0
+<Kps::Address:0x007f3656b658d0
  @address="Ondokuz Mayıs Üniversitesi Uzaktan Eğitim Merkezi ATAKUM/SAMSUN",
  @apartment_number="55",
  @city="SAMSUN",
