@@ -92,7 +92,7 @@ module Kps
 
     def build_address(data)
       address = data[:yerlesim_yeri_adresi]
-      detail_address = address[:il_ilce_merkez_adresi]
+      detail_address = address[:il_ilce_merkez_adresi] || {}
       Address.new(
         identity_number: data[:kimlik_no], city: detail_address[:il],
         town: detail_address[:ilce], street: detail_address[:csbm],

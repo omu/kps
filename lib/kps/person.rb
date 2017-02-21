@@ -20,7 +20,7 @@ module Kps
     end
 
     def turkish?
-      (identity_number.to_s =~ /\A[1-8]/).zore?
+      !(identity_number.to_s =~ /\A[1-8]/).nil?
     end
 
     def foreign?

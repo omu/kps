@@ -3,9 +3,9 @@ require 'kps/query'
 require 'kps/person'
 require 'kps/address'
 require 'kps/version'
+
 # Omu Kimlik Paylasim Sistemi
 module Kps
-
   def self.configuration
     @configuration ||= Configuration.new
   end
