@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-
 module Kps
   # Cevap
   class Response

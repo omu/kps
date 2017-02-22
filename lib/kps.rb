@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 require 'kps/configuration'
 require 'kps/query'
 require 'kps/person'
@@ -22,7 +23,7 @@ module Kps
       Kps::Query.address(id_number)
     else
       raise InvalidAction, 'action parametresi yalnızca `kimlik_bilgisi` veya '\
-            '`adres_bilgisi` değerlerinden birini alabilir'
+            '`adres_bilgisi` degerlerinden birini alabilir'
     end
   end
 end

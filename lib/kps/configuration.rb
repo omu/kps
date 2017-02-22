@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 module Kps
   class Configuration
     attr_accessor :wsdl, :open_timeout, :read_timeout

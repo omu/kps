@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 module Kps
   # Kisisel bilgilerin tutuldugu klass
   class Person
