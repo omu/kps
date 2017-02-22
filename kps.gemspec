@@ -5,7 +5,7 @@ require 'kps/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'kps'
-  spec.version       = Kps::VERSION
+  spec.version       = Kps::VERSION.dup
   spec.authors       = ['Uzem Yazılım Birimi']
   spec.email         = ['teknik@uzem.omu.edu.tr']
 
