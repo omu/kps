@@ -35,8 +35,14 @@ module Kps
 
     def identity_valid?
       result = @data[:sorgula_response][:return][:sorgula_result]
-      (result[:hata_bilgisi].nil? &&
-       result[:sorgu_sonucu][:bilesik_kutuk_bilgileri][:hata_bilgisi].nil?)
+      information = result[:sorgu_sonucu][:bilesik_kutuk_bilgileri]
+      return false unless result[:hata_bilgisi].nil?
+      if information[:kimlik_no].start_with?('9')
+        information[:yabanci_kisi_kutukleri][:kisi_bilgisi]\
+        [:hata_bilgisi].nil?
+      else
+        information[:hata_bilgisi].nil?
+      end
     rescue NoMethodError
       false
     end
