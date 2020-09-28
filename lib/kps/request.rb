@@ -13,7 +13,7 @@ module Kps
         open_timeout: Kps.configuration.open_timeout,
         read_timeout: Kps.configuration.read_timeout
       )
-      @params = { KimlikNo: id_number.to_s }
+      @params = { tc: id_number.to_s }
     end
 
     def identity
@@ -28,8 +28,8 @@ module Kps
 
     def get(operation)
       response = @client.call(operation, message: @params)
-      uyruk = (@params[:KimlikNo][0] == '9' ? 'yu' : 'tc')
-      domain = operation == :sorgula ? 'identity' : 'address'
+      uyruk    = @params[:tc][0] == '9' ? 'yu' : 'tc'
+      domain   = operation == :sorgula ? 'identity' : 'address'
       response = Kps::Response.new(response.body, uyruk, domain)
       raise Kps::InvalidResponse, 'Gecersiz data' unless response.valid?
       response.standardization
