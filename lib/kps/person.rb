@@ -1,6 +1,4 @@
-# -*- encoding: utf-8 -*-
 module Kps
-  # Kisisel bilgilerin tutuldugu klass
   class Person
     ATTRIBUTES = [
       :first_name, :identity_number, :first_name, :last_name, :mother_name,
@@ -17,7 +15,7 @@ module Kps
     end
 
     def address
-      Kps::Query.address(identity_number)
+      Kps::Query.address({ tc: identity_number, gun: birthday.day, ay: birthday.month, yil: birthday.year })
     end
 
     def turkish?

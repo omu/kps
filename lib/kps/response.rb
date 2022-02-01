@@ -1,31 +1,30 @@
-# -*- encoding: utf-8 -*-
 module Kps
-  # Cevap
   class Response
-    def initialize(data, uyruk, domain = 'identity')
+    attr_reader :data, :nationality, :action
+    def initialize(data, nationality, action = 'identity')
       @data = data
-      @uyruk = uyruk
-      @domain = domain
+      @nationality = nationality
+      @action = action
     end
 
     def valid?
-      @domain == 'identity' ? identity_valid? : address_valid?
+      action == 'identity' ? identity_valid? : address_valid?
     end
 
     def standardization
-      kutuk_key = if @uyruk == 'yu'
+      kutuk_key = if nationality == 'yu'
                     :yabanci_kisi_kutukleri
                   else
                     :tc_vatandasi_kisi_kutukleri
                   end
-      if @domain == 'identity'
+      if action == 'identity'
         build_identity(
-          @data[:sorgula_response][:return][:sorgula_result][:sorgu_sonucu]\
-          [:bilesik_kutuk_bilgileri][kutuk_key][:kisi_bilgisi], @uyruk
+          data[:sorgula_response][:return][:sorgula_result][:sorgu_sonucu]\
+          [:bilesik_kutuk_bilgileri][kutuk_key][:kisi_bilgisi], nationality
         )
       else
         build_address(
-          @data[:adres_sorgula_response][:return][:sorgula_result]\
+          data[:adres_sorgula_response][:return][:sorgula_result]\
           [:sorgu_sonucu][:kimlik_noile_kisi_adres_bilgileri]
         )
       end
@@ -34,7 +33,7 @@ module Kps
     private
 
     def identity_valid?
-      result = @data[:sorgula_response][:return][:sorgula_result]
+      result = data[:sorgula_response][:return][:sorgula_result]
       information = result[:sorgu_sonucu][:bilesik_kutuk_bilgileri]
       return false unless result[:hata_bilgisi].nil?
       if information[:kimlik_no].start_with?('9')
@@ -48,7 +47,7 @@ module Kps
     end
 
     def address_valid?
-      result = @data[:adres_sorgula_response][:return][:sorgula_result]
+      result = data[:adres_sorgula_response][:return][:sorgula_result]
       (result[:hata_bilgisi].nil? &&
        result[:sorgu_sonucu][:kimlik_noile_kisi_adres_bilgileri]\
        [:hata_bilgisi].nil?)

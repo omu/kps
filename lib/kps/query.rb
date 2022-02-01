@@ -1,16 +1,15 @@
-# -*- encoding: utf-8 -*-
 require 'kps/request'
 
 module Kps
   # Savon kullanarak istek yapar
   class Query
-    def self.identity(id_number)
-      request = Kps::Request.new(id_number)
+    def self.identity(params)
+      request = Kps::Request.new(params)
       request.identity
     end
 
-    def self.address(id_number)
-      request = Kps::Request.new(id_number)
+    def self.address(params)
+      request = Kps::Request.new(params)
       request.address
     end
   end

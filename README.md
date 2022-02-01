@@ -27,6 +27,7 @@ aşağıdaki kodları içisine yapıştırınız.
     config.wsdl = "http://foo.bar.com?wsql"
     config.open_timeout = 30 # Default 30
     config.read_timeout = 30 # Default 30
+    config.ssl_verify_mode = nil
   end
 ```
 
@@ -43,7 +44,7 @@ Bu gem iki tür bilginin kimlik paylaşım sistemi üzerinden çekilmesini sağl
 #### Kişi Bilgisi
 
 ``` Ruby
-Kps.query(kimlik_no)
+Kps.query({ tc: 12345678901, gun: 1, ay: 2, yil: 2022 })
 
 # Response
 <Kps::Person:0x007f3657c1f270
@@ -64,13 +65,13 @@ Kps.query(kimlik_no)
 Veya
 
 ``` Ruby
-Kps::Query.identity(kimlik_no)
+Kps::Query.identity({ tc: 12345678901, gun: 1, ay: 2, yil: 2022 })
 ```
 
 Kişinin, türk vatandaşı veya yabancı uyruklu olup olmadığını aşağıdaki methodlar üzerinden öğrenebilirsiniz.
 
 ``` Ruby
-person = Kps.query(kimlik_no)
+person = Kps.query({ tc: 12345678901, gun: 1, ay: 2, yil: 2022 })
 person.turkish? # true or false
 person.foreign? # true or false
 ```
@@ -78,7 +79,7 @@ person.foreign? # true or false
 #### Adres Bilgisi
 
 ``` Ruby
-Kps.query(kimlik_no, :adres_bilgisi)
+Kps.query({ tc: 12345678901, gun: 1, ay: 2, yil: 2022 }, :adres_bilgisi)
 
 # Response
 <Kps::Address:0x007f3656b658d0
@@ -94,13 +95,13 @@ Kps.query(kimlik_no, :adres_bilgisi)
 Veya
 
 ``` Ruby
-Kps::Query.address(kimlik_no)
+Kps::Query.address({ tc: 12345678901, gun: 1, ay: 2, yil: 2022 })
 ```
 
 Adres bilgilerini kişi bilgileri klasında bulunan `address` metodu ile öğrenebilirsiniz.
 
 ``` Ruby
-person = Kps.query(kimlik_no)
+person = Kps.query({ tc: 12345678901, gun: 1, ay: 2, yil: 2022 })
 person.address
 ```
 

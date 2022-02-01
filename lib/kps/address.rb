@@ -1,7 +1,4 @@
-# -*- encoding: utf-8 -*-
-
 module Kps
-  # Adres bilgilerin tutuldugu klass
   class Address
     ATTRIBUTES =
       [

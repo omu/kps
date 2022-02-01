@@ -1,11 +1,9 @@
-# -*- encoding: utf-8 -*-
 require 'kps/configuration'
 require 'kps/query'
 require 'kps/person'
 require 'kps/address'
 require 'kps/version'
 
-# Omu Kimlik Paylasim Sistemi
 module Kps
   def self.configuration
     @configuration ||= Configuration.new
@@ -16,14 +14,13 @@ module Kps
     yield(config)
   end
 
-  def self.query(id_number, action = :kimlik_bilgisi)
+  def self.query(params, action = :kimlik_bilgisi)
     if action.to_sym == :kimlik_bilgisi
-      Kps::Query.identity(id_number)
+      Kps::Query.identity(params)
     elsif action.to_sym == :adres_bilgisi
-      Kps::Query.address(id_number)
+      Kps::Query.address(params)
     else
-      raise InvalidAction, 'action parametresi yalnızca `kimlik_bilgisi` veya '\
-            '`adres_bilgisi` degerlerinden birini alabilir'
+      raise InvalidAction
     end
   end
 end
