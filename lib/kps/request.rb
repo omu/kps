@@ -2,8 +2,6 @@ require 'savon'
 require 'kps/response'
 require 'kps/error'
 
-OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-
 module Kps
   class Request
     attr_reader :client, :params
