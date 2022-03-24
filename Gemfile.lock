@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    kps (0.3.0)
+    kps (0.4.0)
       savon (>= 2.12.1)
 
 GEM
@@ -23,10 +23,10 @@ GEM
       rack
       socksify
     method_source (1.0.0)
-    mini_portile2 (2.7.1)
+    mini_portile2 (2.8.0)
     minitest (5.15.0)
-    nokogiri (1.13.1)
-      mini_portile2 (~> 2.7.0)
+    nokogiri (1.13.3)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     nori (2.6.0)
     parallel (1.21.0)
@@ -82,4 +82,4 @@ DEPENDENCIES
   rubocop
 
 BUNDLED WITH
-   2.1.2
+   2.2.32
