@@ -47,7 +47,7 @@ module Kps
     def nationality
       raise(ArgumentError, 'Invalid id number') if (id_number = message[:tc]).blank?
 
-      id_number[0] == '9' ? 'yu' : 'tc'
+      id_number.to_s[0] == '9' ? 'yu' : 'tc'
     end
 
     def message
