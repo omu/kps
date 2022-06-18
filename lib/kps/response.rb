@@ -18,9 +18,9 @@ module Kps
                     :tc_vatandasi_kisi_kutukleri
                   end
       if action == 'identity'
+        raw =  data[:sorgula_response][:return][:sorgula_result][:sorgu_sonucu][:bilesik_kutuk_bilgileri]
         build_identity(
-          data[:sorgula_response][:return][:sorgula_result][:sorgu_sonucu]\
-          [:bilesik_kutuk_bilgileri][kutuk_key][:kisi_bilgisi], nationality
+          raw[kutuk_key][:kisi_bilgisi], nationality, raw: raw
         )
       else
         build_address(
@@ -55,16 +55,22 @@ module Kps
       false
     end
 
-    def build_identity(data, uyruk = 'tc')
+    def build_identity(data, uyruk = 'tc', raw: data)
       base = data[:temel_bilgisi]
       status = data[:durum_bilgisi]
       registered_informatin = { il: {}, ilce: {} }.merge(
         data[:kayit_yeri_bilgisi] || {}
       )
-      if uyruk == 'tc'
+      blue_card = raw[:dolu_bilesenler][:cst_bilesik_kutuk_servis_dolu_bilesen][:item]&.include?('MaviKartliKisiBilgisi')
+
+      if blue_card
         birthday = base[:dogum_tarih]
         id_number = data[:tc_kimlik_no]
-        data[:uyruk] = { aciklama: 'Türkiye Cumhuriyeti Devleti' }
+        data[:uyruk] = raw[:mavi_kartli_kisi_kutukleri][:mavi_kart_bilgisi][:uyruk]
+      elsif uyruk == 'tc'
+        birthday = base[:dogum_tarih]
+        id_number = data[:tc_kimlik_no]
+        data[:uyruk] = { aciklama: 'TÜRKİYE CUMHURİYETİ' }
       else
         birthday = data[:dogum_tarih]
         id_number = data[:kimlik_no]
@@ -90,7 +96,8 @@ module Kps
         registered_city: registered_informatin[:il][:aciklama],
         registered_town: registered_informatin[:ilce][:aciklama],
         date_of_death: date_of_death,
-        nationality: data[:uyruk][:aciklama]
+        nationality: data[:uyruk][:aciklama],
+        blue_card: raw[:dolu_bilesenler][:cst_bilesik_kutuk_servis_dolu_bilesen][:item]&.include?('MaviKartliKisiBilgisi')
       )
     end
 

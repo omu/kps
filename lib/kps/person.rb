@@ -3,7 +3,7 @@ module Kps
     ATTRIBUTES = [
       :first_name, :identity_number, :first_name, :last_name, :mother_name,
       :father_name, :gender, :birthday, :place_of_birth, :marital_status,
-      :registered_city, :registered_town, :date_of_death, :nationality
+      :registered_city, :registered_town, :date_of_death, :nationality, :blue_card
     ].freeze
 
     attr_accessor(*ATTRIBUTES)

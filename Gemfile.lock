@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    kps (0.3.0)
+    kps (0.4.1)
       savon (>= 2.12.1)
 
 GEM
@@ -17,16 +17,17 @@ GEM
     builder (3.2.4)
     byebug (11.1.3)
     coderay (1.1.3)
-    gyoku (1.3.1)
+    gyoku (1.4.0)
       builder (>= 2.1.2)
+      rexml (~> 3.0)
     httpi (2.5.0)
       rack
       socksify
     method_source (1.0.0)
-    mini_portile2 (2.7.1)
+    mini_portile2 (2.8.0)
     minitest (5.15.0)
-    nokogiri (1.13.1)
-      mini_portile2 (~> 2.7.0)
+    nokogiri (1.13.6)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     nori (2.6.0)
     parallel (1.21.0)
@@ -35,9 +36,9 @@ GEM
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    public_suffix (4.0.6)
+    public_suffix (4.0.7)
     racc (1.6.0)
-    rack (2.2.3)
+    rack (2.2.3.1)
     rainbow (3.1.1)
     rake (10.5.0)
     regexp_parser (2.2.0)
@@ -82,4 +83,4 @@ DEPENDENCIES
   rubocop
 
 BUNDLED WITH
-   2.1.2
+   2.1.4
