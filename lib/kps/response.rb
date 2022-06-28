@@ -61,7 +61,9 @@ module Kps
       registered_informatin = { il: {}, ilce: {} }.merge(
         data[:kayit_yeri_bilgisi] || {}
       )
-      blue_card = raw[:dolu_bilesenler][:cst_bilesik_kutuk_servis_dolu_bilesen][:item]&.include?('MaviKartliKisiBilgisi')
+
+      kutuk_bilgisi = raw.dig(:dolu_bilesenler, :cst_bilesik_kutuk_servis_dolu_bilesen)
+      blue_card = kutuk_bilgisi.is_a?(Hash) ? kutuk_bilgisi[:item]&.include?('MaviKartliKisiBilgisi') : kutuk_bilgisi == 'MaviKartliKisiBilgisi'
 
       if blue_card
         birthday = base[:dogum_tarih]
@@ -97,7 +99,7 @@ module Kps
         registered_town: registered_informatin[:ilce][:aciklama],
         date_of_death: date_of_death,
         nationality: data[:uyruk][:aciklama],
-        blue_card: raw[:dolu_bilesenler][:cst_bilesik_kutuk_servis_dolu_bilesen][:item]&.include?('MaviKartliKisiBilgisi')
+        blue_card: blue_card
       )
     end
 
