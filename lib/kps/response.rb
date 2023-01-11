@@ -18,7 +18,10 @@ module Kps
                     :tc_vatandasi_kisi_kutukleri
                   end
       if action == 'identity'
-        raw =  data[:sorgula_response][:return][:sorgula_result][:sorgu_sonucu][:bilesik_kutuk_bilgileri]
+        raw = data[:sorgula_response][:return][:sorgula_result][:sorgu_sonucu][:bilesik_kutuk_bilgileri]
+
+        kutuk_key = :mavi_kartli_kisi_kutukleri if blue_card?(raw)
+
         build_identity(
           raw[kutuk_key][:kisi_bilgisi], nationality, raw: raw
         )
@@ -114,6 +117,11 @@ module Kps
         inner_door_number: detail_address[:ic_kapi_no],
         address: address[:acik_adres]
       )
+    end
+
+    def blue_card?(raw)
+      kutuk_bilgisi = raw.dig(:dolu_bilesenler, :cst_bilesik_kutuk_servis_dolu_bilesen)
+      kutuk_bilgisi.is_a?(Hash) && kutuk_bilgisi[:item]&.include?('MaviKartliKisiBilgisi')
     end
   end
 end
